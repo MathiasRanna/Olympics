@@ -1,8 +1,7 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Athletes</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,15 +13,23 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
     <!-- Font Awesome CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="myCSS.css"/>
+    <link rel="stylesheet" href="myCSS.css" />
+    <style>
+        .avatar{
+            height: 70px;
+            border-radius: 100px;
+            width: 70px;
+            border: solid 2px black;
+        }
+    </style>
 </head>
-<body>
 
+<body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container">
         <a class="navbar-brand" href="index.html" tabindex="Olympics"><img
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Olympic_rings_without_rims.svg/800px-Olympic_rings_without_rims.svg.png"
-                height="24" alt="olympics"/></a>
+                height="24" /></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -44,24 +51,24 @@
         </div>
     </div>
 </nav>
-<!-- WORKING AREA -->
-
+<!-- Working Area -->
 <div class="container">
     <div class="border-bottom py-2 mb-2">
-        <h2 data-bind="text: displayName"></h2>
+        <h2 data-bind="text:displayName"></h2>
     </div>
+    <!-- ko if:records().length > 0 -->
     <div class="row small">
         <p class=" col-4 mr-auto pt-2">
             <span data-bind="html: 'Page: ' + currentPage() + ' of ' + totalPages()"></span><br />
-            <span data-bind="html: 'Games: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
+            <span data-bind="html: 'Athletes: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
         </p>
         <div class="col-8 my-0 pt-3">
             <ul class="pagination float-end">
                 <!-- ko if: currentPage() > 5 && totalPages() > 10 -->
                 <li class="page-item float-end"><a class="page-link" title="First Page"
-                                                   data-bind="attr: { href: './games.html?page=' + '1',  rel:'prev'}">⇤</a></li>
+                                                   data-bind="attr: { href: './athletes.html?page=' + '1',  rel:'prev'}">⇤</a></li>
                 <li class="page-item float-end"><a class="page-link" title="Previous Page"
-                                                   data-bind="attr: { href: './games.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
+                                                   data-bind="attr: { href: './athletes.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
                 <!-- /ko -->
                 <!-- ko foreach: pageArray()-->
                 <!-- ko if:$data == $parent.currentPage() -->
@@ -70,39 +77,39 @@
                 <!-- /ko -->
                 <!-- ko if:$data != $parent.currentPage() -->
                 <li class="page-item"><a class="page-link"
-                                         data-bind="attr: { href: './games.html?page=' + $data, title:'Goto Page ' + $data }, text:$data"></a>
+                                         data-bind="attr: { href: './athletes.html?page=' + $data, title:'Goto Page ' + $data }, text:$data"></a>
                 </li>
                 <!-- /ko -->
                 <!-- /ko -->
                 <!-- ko if: currentPage() < totalPages() - 4 && totalPages() > 9 -->
                 <li class="page-item"><a class="page-link" title="Next Page"
-                                         data-bind="attr: { href: './games.html?page=' + nextPage(), rel:'next' }">→</a></li>
+                                         data-bind="attr: { href: './athletes.html?page=' + nextPage(), rel:'next' }">→</a></li>
                 <li class="page-item"><a class="page-link" title="Last Page"
-                                         data-bind="attr: { href: './games.html?page=' + totalPages() }">⇥</a></li>
+                                         data-bind="attr: { href: './athletes.html?page=' + totalPages() }">⇥</a></li>
                 <!-- /ko -->
             </ul>
         </div>
     </div>
-
+    <!-- /ko -->
 
     <table class="table table-striped table-sm small">
         <thead class="bg-dark text-light">
         <tr>
-            <th scope="col">Id</th>
+            <th scope="col">Photo</th>
             <th scope="col">Name</th>
             <th scope="col">Sex</th>
             <th scope="col">Best Position</th>
-            <th scope="col">Photo</th>
+<!--            <th scope="col">Photo</th>-->
             <th scope="col" class="text-right"></th>
         </tr>
         </thead>
         <tbody data-bind="foreach: records">
         <tr>
-            <td class="align-middle" data-bind="text:Id"></td>
+            <td class="align-middle"><img class="avatar" data-bind="attr: { src: $parent.athletePhoto(Photo)}" alt="Athlete photo"  src=""/></td>
             <td class="align-middle" data-bind="text:Name"></td>
             <td class="align-middle" data-bind="text:Sex"></td>
             <td class="align-middle" data-bind="text:BestPosition"></td>
-            <td class="align-middle"> <img style="height: 80px;max-width: 80px" data-bind="attr:{ src: $parent.athletePhoto(Photo)}" alt="Athlete Picture" /> </td>
+<!--            <td class="align-middle" data-bind="text:Photo"></td>-->
             <td class="text-end">
                 <a class="btn btn-default btn-light btn-xs"
                    data-bind="attr: { href:'./gameDetails.html?id=' + Id }">
@@ -116,12 +123,7 @@
         </tr>
         </tbody>
     </table>
-
 </div>
-
-
-
-
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -129,7 +131,7 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Olympic_rings_without_rims.svg/800px-Olympic_rings_without_rims.svg.png"
-                         height="30"  alt="olympics"/> Loading data...
+                         height="30" /> Loading data...
                 </h5>
             </div>
             <div class="modal-body text-center">
@@ -138,13 +140,12 @@
         </div>
     </div>
 </div>
-<!-- BOTTOM NAV -->
+<!-- End of Working Area -->
 <nav class="navbar navbar-light bg-light fixed-bottom">
     <div class="container small">
         <div class="navbar-text">&copy; Introdução as Tecnologias Web - 2022/23</div>
         <div class="navbar-text">Made with <i class="far fa-heart text-danger"></i> for U by <a
-                href="mailto:jsp@ua.pt" class="text-decoration-none text-muted">jsp@ua.pt</a>.
-        </div>
+                href="mailto:jsp@ua.pt" class="text-decoration-none text-muted">jsp@ua.pt</a>.</div>
         <div class="navbar-nav">
             <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade de Aveiro</a>
             </div>
@@ -161,4 +162,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
 <script src="athletes.js"></script>
 </body>
+
 </html>

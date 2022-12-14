@@ -4,12 +4,13 @@ var vm = function () {
     //---Variáveis locais
     var self = this;
     self.baseUri = ko.observable('http://192.168.160.58/Olympics/api/athletes');
-    self.displayName = 'Olympic Games athletes';
+    //self.baseUri = ko.observable('http://localhost:62595/api/drivers');
+    self.displayName = 'Olympic Games editions List';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     self.records = ko.observableArray([]);
     self.currentPage = ko.observable(1);
-    self.pagesize = ko.observable(5);
+    self.pagesize = ko.observable(10);
     self.totalRecords = ko.observable(50);
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
@@ -41,8 +42,8 @@ var vm = function () {
             list.push(i + step);
         return list;
     };
-    self.athletePhoto = function (photo){
-        if (photo){
+    self.athletePhoto = function (photo) {
+        if (photo) {
             return photo;
         } else {
             return "https://thumbs.dreamstime.com/b/default-avatar-profile-flat-icon-social-media-user-vector-portrait-unknown-human-image-default-avatar-profile-flat-icon-184330869.jpg";
@@ -102,6 +103,7 @@ var vm = function () {
     }
 
     function getUrlParameter(sParam) {
+
         var sPageURL = window.location.search.substring(1),
             sURLVariables = sPageURL.split('&'),
             sParameterName,
@@ -128,11 +130,13 @@ var vm = function () {
     console.log("VM initialized!");
 };
 
-$(document).ready(function () {
-    console.log("ready!");
-    ko.applyBindings(new vm());
-});
+if (typeof jQuery !== 'undefined'){
+    $(document).ready(function () {
+        console.log("ready!");
+        ko.applyBindings(new vm());
+    });
 
-$(document).ajaxComplete(function (event, xhr, options) {
-    $("#myModal").modal('hide');
-})
+    $(document).ajaxComplete(function (event, xhr, options) {
+        $("#myModal").modal('hide');
+    })
+}
