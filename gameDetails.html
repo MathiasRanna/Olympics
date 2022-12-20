@@ -53,9 +53,12 @@
         <div class="row border-bottom mx-0  my-1">
             <div class="col-2">Year</div><div class="col-10" data-bind="text: Year"></div>
         </div>
+        <div class="row border-bottom mx-0  my-1">
+            <div class="col-2">City</div><div class="col-10" data-bind="text: City"></div>
+        </div>
         <div class="row border-bottom mx-0  my-1" data-bind="visible: Logo() != '' && Logo() != null">
             <div class="col-2">Logo</div><div class="small col-10">
-                <img class="img-thumbnail" data-bind="attr:{src: Logo}"><br /><i class="fa fa-link"></i><br />
+                <img class="img-thumbnail" data-bind="attr:{src: Logo}"><br /><i class="fa fa-link"></i>
                 [<a class="link-dark text-decoration-none" data-bind="attr: { href: Logo }, text: Logo" target="_blank"></a>]</div>
         </div>
         <div class="row border-bottom mx-0  my-1" data-bind="visible: Photo() != '' && Photo() != null">
@@ -66,7 +69,7 @@
         </div>
         <!-- /ko -->
         <a href="./games.html" class="btn btn-default btn-sm small"><i class="fa fa-list"></i> Back to List</a>
-        <a data-bind="attr: { href:'./gameFull.html?id=' + Id() }" class="btn btn-default btn-sm small"><i class="fa fa-th"></i> Full Details</a>
+        <a data-bind="attr: { href:'./gameFull.html?id=' + Id }" class="btn btn-default btn-sm small"><i class="fa fa-th"></i> Full Details</a>
     </div>
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

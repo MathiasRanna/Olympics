@@ -3,36 +3,31 @@ var vm = function () {
     console.log('ViewModel initiated...');
     //---Variáveis locais
     var self = this;
-    self.baseUri = ko.observable('http://192.168.160.58/Olympics/api/Games/');
-    self.displayName = 'Olympic Games edition Details';
+    self.baseUri = ko.observable('http://192.168.160.58/Olympics/api/Countries/');
+    self.displayName = 'Olympic Games country Details';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     //--- Data Record
     self.Id = ko.observable('');
-    self.CountryName = ko.observable('');
-    self.Logo = ko.observable('');
+    self.IOC = ko.observable('');
     self.Name = ko.observable('');
-    self.Photo = ko.observable('');
-    self.Season = ko.observable('');
-    self.Year = ko.observableArray('');
+    self.Flag = ko.observable('');
     self.Url = ko.observable('');
-    self.City = ko.observable('');
+    self.events = ko.observableArray([]);
+
 
     //--- Page Events
     self.activate = function (id) {
-        console.log('CALL: getDetails...');
+        console.log('CALL: getCountry...');
         var composedUri = self.baseUri() + id;
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
             hideLoading();
             self.Id(data.Id);
-            self.CountryName(data.CountryName);
-            self.Logo(data.Logo);
             self.Name(data.Name);
-            self.Photo(data.Photo);
-            self.Season(data.Season);
-            self.Year(data.Year);
-            self.City(data.City);
+            self.IOC(data.IOC);
+            self.Flag(data.Flag);
+            self.events(data.Events);
         });
     };
 
