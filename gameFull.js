@@ -76,7 +76,7 @@ var vm = function () {
             sURLVariables = sPageURL.split('&'),
             sParameterName,
             i;
-
+            
         for (i = 0; i < sURLVariables.length; i++) {
             sParameterName = sURLVariables[i].split('=');
 
@@ -88,8 +88,7 @@ var vm = function () {
 
     //--- start ....
     showLoading();
-    //var pg = getUrlParameter('id');   -->Problem reading the id of the game!
-    var pg = 2; //with id set to 2 it works
+    var pg = getUrlParameter('id');
     console.log(pg);
     if (pg == undefined)
         self.activate(1);

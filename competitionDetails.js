@@ -1,38 +1,35 @@
-﻿// ViewModel KnockOut
+// ViewModel KnockOut
 var vm = function () {
     console.log('ViewModel initiated...');
     //---Variáveis locais
     var self = this;
-    self.baseUri = ko.observable('http://192.168.160.58/Olympics/api/Games/');
-    self.displayName = 'Olympic Games edition Details';
+    self.baseUri = ko.observable('http://192.168.160.58/Olympics/api/Competitions/');
+    self.displayName = 'Olympic Games competition Details';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     //--- Data Record
     self.Id = ko.observable('');
-    self.CountryName = ko.observable('');
-    self.Logo = ko.observable('');
     self.Name = ko.observable('');
+    self.ModalityId = ko.observable('');
+    self.Modality = ko.observable('');
     self.Photo = ko.observable('');
-    self.Season = ko.observable('');
-    self.Year = ko.observableArray('');
     self.Url = ko.observable('');
-    self.City = ko.observable('');
+    self.participant = ko.observableArray([]);
+
 
     //--- Page Events
     self.activate = function (id) {
-        console.log('CALL: getDetails...');
+        console.log('CALL: getCompetition...');
         var composedUri = self.baseUri() + id;
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
             hideLoading();
             self.Id(data.Id);
-            self.CountryName(data.CountryName);
-            self.Logo(data.Logo);
             self.Name(data.Name);
+            self.ModalityId(data.ModalityId);
+            self.Modality(data.Modality);
             self.Photo(data.Photo);
-            self.Season(data.Season);
-            self.Year(data.Year);
-            self.City(data.City);
+            self.participant(data.Participant);
         });
     };
 
@@ -70,7 +67,6 @@ var vm = function () {
             sURLVariables = sPageURL.split('&'),
             sParameterName,
             i;
-        console.log('sPageURL:', sPageURL);
 
         for (i = 0; i < sURLVariables.length; i++) {
             sParameterName = sURLVariables[i].split('=');
