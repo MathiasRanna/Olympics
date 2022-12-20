@@ -1,10 +1,10 @@
-﻿// ViewModel KnockOut
+// ViewModel KnockOut
 var vm = function () {
     console.log('ViewModel initiated...');
     //---Variáveis locais
     var self = this;
-    self.baseUri = ko.observable('http://192.168.160.58/Olympics/api/Games/');
-    self.displayName = 'Olympic Games edition Details';
+    self.baseUri = ko.observable('http://192.168.160.58/Olympics/api/Games/FullDetails?id=');
+    self.displayName = 'Olympic Games edition full Details';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     //--- Data Record
@@ -17,10 +17,13 @@ var vm = function () {
     self.Year = ko.observableArray('');
     self.Url = ko.observable('');
     self.City = ko.observable('');
+    self.athletes = ko.observableArray([]);
+    self.modalities = ko.observableArray([]);
+    self.competitions = ko.observableArray([]);
 
     //--- Page Events
     self.activate = function (id) {
-        console.log('CALL: getDetails...');
+        console.log('CALL: getFullDetails...');
         var composedUri = self.baseUri() + id;
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
@@ -33,7 +36,10 @@ var vm = function () {
             self.Season(data.Season);
             self.Year(data.Year);
             self.City(data.City);
-        });
+            self.athletes(data.Athletes);
+            self.modalities(data.Modalities);
+            self.competitions(data.Competitions);
+            });
     };
 
     //--- Internal functions
@@ -82,7 +88,8 @@ var vm = function () {
 
     //--- start ....
     showLoading();
-    var pg = getUrlParameter('id');
+    //var pg = getUrlParameter('id');   -->Problem reading the id of the game!
+    var pg = 2; //with id set to 2 it works
     console.log(pg);
     if (pg == undefined)
         self.activate(1);
