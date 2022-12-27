@@ -26,7 +26,10 @@ var vm = function () {
     self.toRecord = ko.computed(function () {
         return Math.min(self.currentPage() * self.pagesize(), self.totalRecords());
     }, self);
-    self.totalPages = ko.observable(0);
+    self.totalPages = ko.computed(function (){
+        return Math.ceil(self.totalRecords() / self.pagesize());
+    }, self);
+    self.searchInput = ko.observable('');
     self.pageArray = function () {
         var list = [];
         var size = Math.min(self.totalPages(), 9);
@@ -50,6 +53,34 @@ var vm = function () {
         }
     };
 
+    self.filterAthletes = function (id) {
+        console.log('CALL: searchAthlete....')
+        let composedUri = self.baseUri() + "/SearchByName?q=" + self.searchInput();
+        ajaxHelper(composedUri, 'GET').done(function (data) {
+            console.log(data);
+            if (data.length > 0){
+                self.records(data);
+                self.pagesize(100);
+                $('.info-nav').addClass('d-none');
+                $('#specify-message').removeClass('d-none');
+            } else {
+                $('.info-nav').addClass('d-none');
+                $('.table').addClass('d-none');
+                $('#noResults').removeClass('d-none');
+            }
+
+        })
+        return false;
+    }
+
+    self.tryAPI = function (ioc , id){
+        console.log("CALL: ioc");
+        let composedUri = self.baseUri() + "/ByIOC?ioc=" + ioc + "&page=" + id + "&pagesize=" + self.pagesize();
+        ajaxHelper(composedUri, 'GET').done(function (data){
+            console.log(data);
+        })
+    }
+
     //--- Page Events
     self.activate = function (id) {
         console.log('CALL: getGames...');
@@ -62,7 +93,6 @@ var vm = function () {
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
             self.pagesize(data.PageSize)
-            self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalRecords);
             //self.SetFavourites();
         });
@@ -116,16 +146,19 @@ var vm = function () {
                 return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
             }
         }
-    };
+    }
 
     //--- start ....
     showLoading();
     var pg = getUrlParameter('page');
     console.log(pg);
-    if (pg === undefined)
+    if (pg === undefined){
         self.activate(1);
+        self.tryAPI("est", 1);
+    }
     else {
         self.activate(pg);
+        self.tryAPI("est", pg);
     }
     console.log("VM initialized!");
 };
