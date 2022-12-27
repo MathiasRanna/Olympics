@@ -75,10 +75,10 @@
             <ul class="pagination float-end">
                 <!-- ko if: currentPage() > 5 && totalPages() > 10 -->
                 <li class="page-item float-end"><a class="page-link" title="First Page"
-                                                   data-bind="attr: { href: './competitions.html?page=' + '1',  rel:'prev'}">⇤</a>
+                                                   data-bind="attr: { href: './competitions.html?page=' + '1' + '&q=' + searchInput(),  rel:'prev'}">⇤</a>
                 </li>
                 <li class="page-item float-end"><a class="page-link" title="Previous Page"
-                                                   data-bind="attr: { href: './competitions.html?page=' + previousPage(),  rel:'prev'}">←</a>
+                                                   data-bind="attr: { href: './competitions.html?page=' + previousPage() + '&q=' + searchInput(),  rel:'prev'}">←</a>
                 </li>
                 <!-- /ko -->
                 <!-- ko foreach: pageArray()-->
@@ -95,10 +95,10 @@
                 <!-- /ko -->
                 <!-- ko if: currentPage() < totalPages() - 4 && totalPages() > 9 -->
                 <li class="page-item"><a class="page-link" title="Next Page"
-                                         data-bind="attr: { href: './competitions.html?page=' + nextPage(), rel:'next' }">→</a>
+                                         data-bind="attr: { href: './competitions.html?page=' + nextPage() + '&q=' + searchInput(), rel:'next' }">→</a>
                 </li>
                 <li class="page-item"><a class="page-link" title="Last Page"
-                                         data-bind="attr: { href: './competitions.html?page=' + totalPages() }">⇥</a>
+                                         data-bind="attr: { href: './competitions.html?page=' + totalPages() + '&q=' + searchInput()}">⇥</a>
                 </li>
                 <!-- /ko -->
             </ul>
