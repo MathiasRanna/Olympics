@@ -12,22 +12,30 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
     <!-- Font Awesome CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../myCSS.css" />
+    <link rel="stylesheet" href="../myCSS.css"/>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="../index.html" tabindex="Olympics"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Olympic_rings_without_rims.svg/800px-Olympic_rings_without_rims.svg.png" height="24" /></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="../index.html" tabindex="Olympics"><img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Olympic_rings_without_rims.svg/800px-Olympic_rings_without_rims.svg.png"
+                height="24"/></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" aria-current="page" href="athletes.html"><i class="far fa-user text-warning"></i> Athletes</a></li>
-                <li class="nav-item"><a class="nav-link" aria-current="page" href="../competition/competitions.html"><i class="fa fa-trophy"></i> Competitions</a></li>
-                <li class="nav-item"><a class="nav-link" aria-current="page" href="../countries/countries.html"><i class=" far fa-flag text-danger"></i> Countries</a></li>
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="../games/games.html"><i class="fa fa-map-marker text-success"></i> Games</a></li>
-                <li class="nav-item"><a class="nav-link" aria-current="page" href="../modalities/modalities.html"><i class="far fa-soccer-ball text-primary"></i> Modalities</a></li>
+                <li class="nav-item"><a class="nav-link" aria-current="page" href="athletes.html"><i
+                        class="far fa-user text-warning"></i> Athletes</a></li>
+                <li class="nav-item"><a class="nav-link" aria-current="page" href="../competition/competitions.html"><i
+                        class="fa fa-trophy"></i> Competitions</a></li>
+                <li class="nav-item"><a class="nav-link" aria-current="page" href="../countries/countries.html"><i
+                        class=" far fa-flag text-danger"></i> Countries</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="../games/games.html"><i
+                        class="fa fa-map-marker text-success"></i> Games</a></li>
+                <li class="nav-item"><a class="nav-link" aria-current="page" href="../modalities/modalities.html"><i
+                        class="far fa-soccer-ball text-primary"></i> Modalities</a></li>
             </ul>
         </div>
     </div>
@@ -39,34 +47,47 @@
     </div>
     <!-- ko if:Name().length > 0 -->
     <div class="row border-bottom mx-0  my-1">
-        <div class="col-2">Name</div><div class="col-10" data-bind="text: Name"></div>
+        <div class="col-2">Name</div>
+        <div class="col-10" data-bind="text: Name"></div>
     </div>
-    <div class="row border-bottom mx-0  my-1"><div class="col-2">Sex</div>
+    <div class="row border-bottom mx-0  my-1">
+        <div class="col-2">Sex</div>
         <div class="col-10" data-bind="text: Sex"></div>
     </div>
     <div class="row border-bottom mx-0  my-1" data-bind="visible: age() != '' && age() != null && age() != '-'">
-        <div class="col-2">Age</div><div class="col-10"><span data-bind="text: age"></span> <span>years old</span></div>
+        <div class="col-2">Age</div>
+        <div class="col-10"><span data-bind="text: age"></span> <span>years old</span></div>
     </div>
-    <div class="row border-bottom mx-0  my-1" data-bind="visible: BornDate() != '' && BornDate() != null && BornDate() != 'NA'">
-        <div class="col-2">Born date</div><div class="col-10"><span data-bind="text: formatDate(BornDate())"></span></div>
+    <div class="row border-bottom mx-0  my-1"
+         data-bind="visible: BornDate() != '' && BornDate() != null && BornDate() != 'NA'">
+        <div class="col-2">Born date</div>
+        <div class="col-10"><span data-bind="text: formatDate(BornDate())"></span></div>
     </div>
-    <div class="row border-bottom mx-0  my-1" data-bind="visible: DiedDate() != '' && DiedDate() != null && DiedDate() != 'NA'">
-        <div class="col-2">Died date</div><div class="col-10"><span data-bind="text: formatDate(DiedDate())"></span></div>
+    <div class="row border-bottom mx-0  my-1"
+         data-bind="visible: DiedDate() != '' && DiedDate() != null && DiedDate() != 'NA'">
+        <div class="col-2">Died date</div>
+        <div class="col-10"><span data-bind="text: formatDate(DiedDate())"></span></div>
     </div>
-    <div class="row border-bottom mx-0  my-1" data-bind="visible: Weight() != '' && Weight() != null && Weight() != 'NA'">
-        <div class="col-2">Weight</div><div class="col-10"><span data-bind="text: Weight"></span> <span>kg</span></div>
+    <div class="row border-bottom mx-0  my-1"
+         data-bind="visible: Weight() != '' && Weight() != null && Weight() != 'NA'">
+        <div class="col-2">Weight</div>
+        <div class="col-10"><span data-bind="text: Weight"></span> <span>kg</span></div>
     </div>
-    <div class="row border-bottom mx-0  my-1" data-bind="visible: Height() != '' && Height() != null && Weight() != 'NA'">
-        <div class="col-2">Height</div><div class="col-10"><span data-bind="text: Height"></span> <span>cm</span></div>
+    <div class="row border-bottom mx-0  my-1"
+         data-bind="visible: Height() != '' && Height() != null && Weight() != 'NA'">
+        <div class="col-2">Height</div>
+        <div class="col-10"><span data-bind="text: Height"></span> <span>cm</span></div>
     </div>
     <div class="row border-bottom mx-0  my-1">
-        <div class="col-2">Photo</div><div class="small col-10">
-        <img class="img-thumbnail" style="max-width: 200px; max-height: 200px" data-bind="attr:{src: athletePhoto}"><br />
-    </div>
+        <div class="col-2">Photo</div>
+        <div class="small col-10">
+            <img class="img-thumbnail" style="max-width: 200px; max-height: 200px" data-bind="attr:{src: athletePhoto}"><br/>
+        </div>
     </div>
     <!-- /ko -->
     <a href="athletes.html" class="btn btn-default btn-sm small"><i class="fa fa-list"></i> Back to List</a>
-    <a data-bind="attr: { href:OlympediaLink }" target="_blank" class="btn btn-default btn-sm small"><i class="fa fa-th"></i> Olympedia link with Full Details</a>
+    <a data-bind="attr: { href:OlympediaLink }" target="_blank" class="btn btn-default btn-sm small"><i
+            class="fa fa-th"></i> Olympedia link with Full Details</a>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -74,7 +95,8 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Olympic_rings_without_rims.svg/800px-Olympic_rings_without_rims.svg.png" height="30" /> Loading data...
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Olympic_rings_without_rims.svg/800px-Olympic_rings_without_rims.svg.png"
+                         height="30"/> Loading data...
                 </h5>
             </div>
             <div class="modal-body text-center">
@@ -86,8 +108,9 @@
 <!-- End of Work Area -->
 <nav class="navbar navbar-light bg-light fixed-bottom">
     <div class="container small">
-        <div class="navbar-text">&copy;  Introdução as Tecnologias Web - 2022/23</div>
-        <div class="navbar-text">Made with <i class="far fa-heart text-danger"></i> for U by <a href="mailto:jsp@ua.pt" class="text-decoration-none text-muted">jsp@ua.pt</a>.</div>
+        <div class="navbar-text">&copy; Introdução as Tecnologias Web - 2022/23</div>
+        <div class="navbar-text"><a href="https://github.com/MathiasRanna/Olympics"><i class="fa-brands fa-github"></i></a>
+        </div>
         <div class="navbar-nav">
             <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade de Aveiro</a></div>
         </div>
