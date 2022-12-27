@@ -54,8 +54,8 @@
 <!-- Working Area -->
 <div class="container">
     <div class="border-bottom pt-2 py-2 mb-2 row">
-        <div class="col-8"><h2 data-bind="text:displayName"></h2></div>
-        <div class="col-4">
+        <div class="col-7"><h2 data-bind="text:displayName"></h2></div>
+        <div class="col-5">
             <div class="row mb-2">
                 <form data-bind="submit: filterAthletes">
                     <div class="input-group input-group-sm">
@@ -153,8 +153,8 @@
     </table>
 
     <!-- No results found -->
-    <div id="noResults" class="d-none">
-        <h5><em>No results found, try searching by another name!</em></h5>
+    <div id="noResults" class="d-none row" style="background-color: aliceblue; padding: 70px">
+        <h5> <i class="fa fa-circle-info"></i><em>No results found, try searching by another name!</em></h5>
     </div>
 </div>
 <!-- Modal -->

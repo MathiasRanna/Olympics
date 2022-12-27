@@ -186,7 +186,7 @@ var vm = function () {
         // Activate search functions if search was given
         if (search !== undefined && search !== "") {
             self.searchInput(search);
-            self.filterAthletes("", pg);
+            self.filterByQuery("", pg);
         } else if (pg === undefined) {
             self.activate(1);
         } else {
