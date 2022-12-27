@@ -3,18 +3,15 @@ var vm = function () {
     console.log('ViewModel initiated...');
     //---Variáveis locais
     var self = this;
-    self.baseUri = ko.observable('http://192.168.160.58/Olympics/api/athletes');
-    //self.baseUri = ko.observable('http://localhost:62595/api/drivers');
-    self.displayName = 'Olympic Games Athletes';
+    self.baseUri = ko.observable('http://192.168.160.58/Olympics/api/Modalities');
+    self.displayName = 'Olympic Games Modalities List';
+    // searchbar
+    self.searchInput = ko.observable('');
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     self.records = ko.observableArray([]);
-    // for countries search
-    self.selectedContryName = ko.observable('');
-    self.selectedCountry = ko.observable('');
-    self.availableCountries = ko.observableArray([]);
     self.currentPage = ko.observable(1);
-    self.pagesize = ko.observable(10);
+    self.pagesize = ko.observable(20);
     self.totalRecords = ko.observable(50);
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
@@ -30,10 +27,7 @@ var vm = function () {
     self.toRecord = ko.computed(function () {
         return Math.min(self.currentPage() * self.pagesize(), self.totalRecords());
     }, self);
-    self.totalPages = ko.computed(function () {
-        return Math.ceil(self.totalRecords() / self.pagesize());
-    }, self);
-    self.searchInput = ko.observable('');
+    self.totalPages = ko.observable(0);
     self.pageArray = function () {
         var list = [];
         var size = Math.min(self.totalPages(), 9);
@@ -49,16 +43,9 @@ var vm = function () {
             list.push(i + step);
         return list;
     };
-    self.athletePhoto = function (photo) {
-        if (photo) {
-            return photo;
-        } else {
-            return "https://thumbs.dreamstime.com/b/default-avatar-profile-flat-icon-social-media-user-vector-portrait-unknown-human-image-default-avatar-profile-flat-icon-184330869.jpg";
-        }
-    };
 
-    self.filterAthletes = function (formElement, page = 1) {
-        console.log('CALL: searchAthlete....')
+    self.filterByQuery = function (formElement, page = 1) {
+        console.log('CALL: searchQuery....')
         let composedUri = self.baseUri() + "/SearchByName?q=" + self.searchInput();
         ajaxHelper(composedUri, 'GET').done(function (data) {
             hideLoading();
@@ -69,38 +56,18 @@ var vm = function () {
                 self.totalRecords(data.length);
                 self.currentPage(page);
             } else {
+                $('.table').addClass('d-none');
                 $('#noResults').removeClass('d-none');
             }
         })
         return false;
     }
 
-    self.activateFilterByCountry = function (viewModel, event) {
-        let parseIOC = event.target.value.toString().slice(1, -1);
-        self.selectedCountry(parseIOC);
-        if (pg === undefined) {
-            self.activate(1, parseIOC);
-        } else {
-            self.activate(pg, parseIOC);
-        }
-    }
-
-    self.searchAndFilterByCountry = function (){
-
-    }
     //--- Page Events
-    self.activate = function (id, ioc) {
-        var composedUri = "";
-        // activate country dropdown list
-        if (self.selectedCountry() !== '') {
-            console.log('CALL: IOC list...');
-            composedUri = self.baseUri() + '/ByIOC?ioc=' + ioc + "&page=" + id + "&pageSize=" + self.pagesize();
-        }
-        // activate normal
-        else {
-            console.log('CALL: getGames...');
-            composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
-        }
+    self.activate = function (id) {
+        console.log('CALL: getGames...');
+        var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
+        console.log(composedUri);
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
             hideLoading();
@@ -109,15 +76,10 @@ var vm = function () {
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
             self.pagesize(data.PageSize)
+            self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalRecords);
             //self.SetFavourites();
-            ioc !== undefined && $('#selectCountry').val("(" + ioc + ")");
         });
-        // Activate api call for available countries
-        let composedUriForCountries = 'http://192.168.160.58/Olympics/api/Countries?page=1&pagesize=250';
-        ajaxHelper(composedUriForCountries, 'GET').done(function (data) {
-            self.availableCountries(data.Records);
-        })
     };
 
     //--- Internal functions
@@ -139,7 +101,7 @@ var vm = function () {
 
     function sleep(milliseconds) {
         const start = Date.now();
-        while (Date.now() - start < milliseconds) ;
+        while (Date.now() - start < milliseconds);
     }
 
     function showLoading() {
@@ -148,7 +110,6 @@ var vm = function () {
             keyboard: false
         });
     }
-
     function hideLoading() {
         $('#myModal').on('shown.bs.modal', function (e) {
             $("#myModal").modal('hide');
@@ -156,7 +117,6 @@ var vm = function () {
     }
 
     function getUrlParameter(sParam) {
-
         var sPageURL = window.location.search.substring(1),
             sURLVariables = sPageURL.split('&'),
             sParameterName,
@@ -174,36 +134,25 @@ var vm = function () {
     //--- start ....
     showLoading();
     var pg = getUrlParameter('page');
-    var search = getUrlParameter("q");
-    let ioc = getUrlParameter('ioc');
+    var search = getUrlParameter('q');
     console.log(pg);
     console.log(search);
-    console.log(ioc);
-    if (ioc !== undefined && ioc !== "") {
-        self.selectedCountry(ioc);
-        self.activate(pg, ioc);
+    if (search !== undefined && search !== "") {
+        self.searchInput(search);
+        self.filterByQuery("", pg);
+    } else if (pg === undefined) {
+        self.activate(1);
     } else {
-        // Activate search functions if search was given
-        if (search !== undefined && search !== "") {
-            self.searchInput(search);
-            self.filterByQuery("", pg);
-        } else if (pg === undefined) {
-            self.activate(1);
-        } else {
-            self.activate(pg);
-        }
+        self.activate(pg);
     }
-
     console.log("VM initialized!");
 };
 
-if (typeof jQuery !== 'undefined') {
-    $(document).ready(function () {
-        console.log("ready!");
-        ko.applyBindings(new vm());
-    });
+$(document).ready(function () {
+    console.log("ready!");
+    ko.applyBindings(new vm());
+});
 
-    $(document).ajaxComplete(function (event, xhr, options) {
-        $("#myModal").modal('hide');
-    })
-}
+$(document).ajaxComplete(function (event, xhr, options) {
+    $("#myModal").modal('hide');
+})
