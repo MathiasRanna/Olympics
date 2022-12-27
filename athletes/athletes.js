@@ -9,6 +9,10 @@ var vm = function () {
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     self.records = ko.observableArray([]);
+    // for countries search
+    self.selectedContryName = ko.observable('');
+    self.selectedCountry = ko.observable('');
+    self.availableCountries = ko.observableArray([]);
     self.currentPage = ko.observable(1);
     self.pagesize = ko.observable(10);
     self.totalRecords = ko.observable(50);
@@ -26,7 +30,7 @@ var vm = function () {
     self.toRecord = ko.computed(function () {
         return Math.min(self.currentPage() * self.pagesize(), self.totalRecords());
     }, self);
-    self.totalPages = ko.computed(function (){
+    self.totalPages = ko.computed(function () {
         return Math.ceil(self.totalRecords() / self.pagesize());
     }, self);
     self.searchInput = ko.observable('');
@@ -53,38 +57,50 @@ var vm = function () {
         }
     };
 
-    self.filterAthletes = function (id) {
+    self.filterAthletes = function (formElement, page = 1) {
         console.log('CALL: searchAthlete....')
         let composedUri = self.baseUri() + "/SearchByName?q=" + self.searchInput();
         ajaxHelper(composedUri, 'GET').done(function (data) {
+            hideLoading();
             console.log(data);
-            if (data.length > 0){
-                self.records(data);
-                self.pagesize(100);
-                $('.info-nav').addClass('d-none');
-                $('#specify-message').removeClass('d-none');
+            if (data.length > 0) {
+                let sliceCorrectData = data.slice((page - 1) * self.pagesize(), ((page - 1) * self.pagesize() + self.pagesize()));
+                self.records(sliceCorrectData);
+                self.totalRecords(data.length);
+                self.currentPage(page);
             } else {
-                $('.info-nav').addClass('d-none');
-                $('.table').addClass('d-none');
                 $('#noResults').removeClass('d-none');
             }
-
         })
         return false;
     }
 
-    self.tryAPI = function (ioc , id){
-        console.log("CALL: ioc");
-        let composedUri = self.baseUri() + "/ByIOC?ioc=" + ioc + "&page=" + id + "&pagesize=" + self.pagesize();
-        ajaxHelper(composedUri, 'GET').done(function (data){
-            console.log(data);
-        })
+    self.activateFilterByCountry = function (viewModel, event) {
+        let parseIOC = event.target.value.toString().slice(1, -1);
+        self.selectedCountry(parseIOC);
+        if (pg === undefined) {
+            self.activate(1, parseIOC);
+        } else {
+            self.activate(pg, parseIOC);
+        }
     }
 
+    self.searchAndFilterByCountry = function (){
+
+    }
     //--- Page Events
-    self.activate = function (id) {
-        console.log('CALL: getGames...');
-        var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
+    self.activate = function (id, ioc) {
+        var composedUri = "";
+        // activate country dropdown list
+        if (self.selectedCountry() !== '') {
+            console.log('CALL: IOC list...');
+            composedUri = self.baseUri() + '/ByIOC?ioc=' + ioc + "&page=" + id + "&pageSize=" + self.pagesize();
+        }
+        // activate normal
+        else {
+            console.log('CALL: getGames...');
+            composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
+        }
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
             hideLoading();
@@ -95,7 +111,13 @@ var vm = function () {
             self.pagesize(data.PageSize)
             self.totalRecords(data.TotalRecords);
             //self.SetFavourites();
+            ioc !== undefined && $('#selectCountry').val("(" + ioc + ")");
         });
+        // Activate api call for available countries
+        let composedUriForCountries = 'http://192.168.160.58/Olympics/api/Countries?page=1&pagesize=250';
+        ajaxHelper(composedUriForCountries, 'GET').done(function (data) {
+            self.availableCountries(data.Records);
+        })
     };
 
     //--- Internal functions
@@ -117,7 +139,7 @@ var vm = function () {
 
     function sleep(milliseconds) {
         const start = Date.now();
-        while (Date.now() - start < milliseconds);
+        while (Date.now() - start < milliseconds) ;
     }
 
     function showLoading() {
@@ -126,6 +148,7 @@ var vm = function () {
             keyboard: false
         });
     }
+
     function hideLoading() {
         $('#myModal').on('shown.bs.modal', function (e) {
             $("#myModal").modal('hide');
@@ -151,19 +174,30 @@ var vm = function () {
     //--- start ....
     showLoading();
     var pg = getUrlParameter('page');
+    var search = getUrlParameter("q");
+    let ioc = getUrlParameter('ioc');
     console.log(pg);
-    if (pg === undefined){
-        self.activate(1);
-        self.tryAPI("est", 1);
+    console.log(search);
+    console.log(ioc);
+    if (ioc !== undefined && ioc !== "") {
+        self.selectedCountry(ioc);
+        self.activate(pg, ioc);
+    } else {
+        // Activate search functions if search was given
+        if (search !== undefined && search !== "") {
+            self.searchInput(search);
+            self.filterAthletes("", pg);
+        } else if (pg === undefined) {
+            self.activate(1);
+        } else {
+            self.activate(pg);
+        }
     }
-    else {
-        self.activate(pg);
-        self.tryAPI("est", pg);
-    }
+
     console.log("VM initialized!");
 };
 
-if (typeof jQuery !== 'undefined'){
+if (typeof jQuery !== 'undefined') {
     $(document).ready(function () {
         console.log("ready!");
         ko.applyBindings(new vm());

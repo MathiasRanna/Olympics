@@ -56,28 +56,37 @@
     <div class="border-bottom pt-2 py-2 mb-2 row">
         <div class="col-8"><h2 data-bind="text:displayName"></h2></div>
         <div class="col-4">
-            <form data-bind="submit: filterAthletes">
+            <div class="row mb-2">
+                <form data-bind="submit: filterAthletes">
+                    <div class="input-group input-group-sm">
+                        <label for="searchAthlete"></label>
+                        <input id="searchAthlete" class="form-control" placeholder="Insert athlete name or part of name"
+                               type="text" name="q" data-bind="value: searchInput">
+                        <button type="submit" class="btn btn-default btn-sm" title="filter"><i
+                                class="fa fa-search small"></i></button>
+                        <a href="athletes.html" class="btn btn-default btn-sm" title="clear search"><i
+                                class="fa fa-times"></i></a>
+                    </div>
+                </form>
+            </div>
+            <div class="row">
                 <div class="input-group input-group-sm">
-                    <label for="searchAthlete"></label>
-                    <input id="searchAthlete" class="form-control" placeholder="Insert athlete name or part of name"
-                           type="text" name="q" data-bind="value: searchInput">
-                    <button type="submit" class="btn btn-default btn-sm" title="filter"><i
-                            class="fa fa-search small"></i></button>
-                    <a href="athletes.html" class="btn btn-default btn-sm" title="clear search"><i
-                            class="fa fa-times"></i></a>
+                    <label class="col-4" for="selectCountry">Filter by country</label>
+                    <select id="selectCountry" class="form-select col-8" aria-label="Filter by country"
+                            data-bind="options: availableCountries, optionsText: 'Name' , optionsValue: 'IOC', optionsCaption: 'Select a country..', event:{ change: activateFilterByCountry}">
+                    </select>
                 </div>
-            </form>
+            </div>
         </div>
 
     </div>
     <!-- ko if:records().length > 0 -->
-    <div class="row small" >
-        <h6 id="specify-message" class="d-none m-2"><em>Specify your search more, if you can not find your Athlete from the given list.</em></h6>
-        <p class=" col-4 mr-auto pt-2 info-nav">
+    <div class="row small">
+        <p class=" col-4 mr-auto pt-2">
             <span data-bind="html: 'Page: ' + currentPage() + ' of ' + totalPages()"></span><br/>
             <span data-bind="html: 'Athletes: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
         </p>
-        <div class="col-8 my-0 pt-3 info-nav">
+        <div class="col-8 my-0 pt-3">
             <ul class="pagination float-end">
                 <!-- ko if: currentPage() > 5 && totalPages() > 10 -->
                 <li class="page-item float-end"><a class="page-link" title="First Page"
@@ -95,7 +104,7 @@
                 <!-- /ko -->
                 <!-- ko if:$data != $parent.currentPage() -->
                 <li class="page-item"><a class="page-link"
-                                         data-bind="attr: { href: './athletes.html?page=' + $data, title:'Go to Page ' + $data }, text:$data"></a>
+                                         data-bind="attr: { href: './athletes.html?page=' + $data + '&q=' + $parent.searchInput() + '&ioc=' + $parent.selectedCountry(), title:'Go to Page ' + $data }, text:$data"></a>
                 </li>
                 <!-- /ko -->
                 <!-- /ko -->
