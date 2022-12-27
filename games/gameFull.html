@@ -21,7 +21,7 @@
     <div class="container">
         <a class="navbar-brand" href="../index.html" tabindex="Olympics"><img
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Olympic_rings_without_rims.svg/800px-Olympic_rings_without_rims.svg.png"
-                height="24"/></a>
+                height="24" alt="olympicRings"/></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -128,7 +128,7 @@
                         <td class="align-middle" data-bind="text:Id"></td>
                         <td class="align-middle" data-bind="text:Name"></td>
                         <td class="align-middle"><a data-bind="attr: { href: Photo }" target="_blank"><img
-                                style="height: 20px;" data-bind="attr: {src: Photo}"></img></a>
+                                style="height: 20px;" data-bind="attr: {src: Photo}"/></a>
                         </td>
                         <td class="align-middle" data-bind="text:Modality"></td>
                         <td class="align-middle" data-bind="text:Results"></td>
@@ -155,8 +155,9 @@
                         <td class="align-middle" data-bind="text:Id"></td>
                         <td class="align-middle" data-bind="text:Name"></td>
                         <td class="align-middle" data-bind="text:Sex"></td>
-                        <td class="align-middle"><a data-bind="attr: { href: Photo }" target="_blank"><img
-                                style="height: 20px;" data-bind="attr: {src: Photo}"></img></a>
+                        <td class="align-middle"><a target="_blank"><img src=""
+                                                                         style="height: 20px;"
+                                                                         data-bind="attr: {src: Photo}"/></a>
                         </td>
                         <td class="align-middle" data-bind="text:BestPosition"></td>
                     </tr>
@@ -209,7 +210,6 @@
 <!-- jQueryUI Bundle -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
 <script src="gameFull.js"></script>
-</div>
 </body>
 
 </html>

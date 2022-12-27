@@ -7,6 +7,8 @@ var vm = function () {
     //self.baseUri = ko.observable('http://localhost:62595/api/drivers');
     self.displayName = 'Olympic Games editions List';
     self.error = ko.observable('');
+    // searchbar
+    self.searchInput = ko.observable('');
     self.passingMessage = ko.observable('');
     self.records = ko.observableArray([]);
     self.currentPage = ko.observable(1);
@@ -26,7 +28,9 @@ var vm = function () {
     self.toRecord = ko.computed(function () {
         return Math.min(self.currentPage() * self.pagesize(), self.totalRecords());
     }, self);
-    self.totalPages = ko.observable(0);
+    self.totalPages = ko.computed(function () {
+        return Math.ceil(self.totalRecords() / self.pagesize());
+    }, self);
     self.pageArray = function () {
         var list = [];
         var size = Math.min(self.totalPages(), 9);
@@ -42,6 +46,25 @@ var vm = function () {
             list.push(i + step);
         return list;
     };
+
+    self.filterByQuery = function (formElement, page = 1) {
+        console.log('CALL: searchQuery....')
+        let composedUri = self.baseUri() + "/SearchByName?q=" + self.searchInput();
+        ajaxHelper(composedUri, 'GET').done(function (data) {
+            hideLoading();
+            console.log(data);
+            if (data.length > 0) {
+                let sliceCorrectData = data.slice((page - 1) * self.pagesize(), ((page - 1) * self.pagesize() + self.pagesize()));
+                self.records(sliceCorrectData);
+                self.totalRecords(data.length);
+                self.currentPage(page);
+            } else {
+                $('.table').addClass('d-none');
+                $('#noResults').removeClass('d-none');
+            }
+        })
+        return false;
+    }
 
     //--- Page Events
     self.activate = function (id) {
@@ -113,10 +136,15 @@ var vm = function () {
     //--- start ....
     showLoading();
     var pg = getUrlParameter('page');
+    var search = getUrlParameter('q');
     console.log(pg);
-    if (pg == undefined)
+    console.log(search);
+    if (search !== undefined && search !== "") {
+        self.searchInput(search);
+        self.filterByQuery("", pg);
+    } else if (pg === undefined) {
         self.activate(1);
-    else {
+    } else {
         self.activate(pg);
     }
     console.log("VM initialized!");
