@@ -5,6 +5,8 @@ var vm = function () {
     var self = this;
     self.baseUri = ko.observable('http://192.168.160.58/Olympics/api/Modalities');
     self.displayName = 'Olympic Games Modalities List';
+    // searchbar
+    self.searchInput = ko.observable('');
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     self.records = ko.observableArray([]);
@@ -41,6 +43,25 @@ var vm = function () {
             list.push(i + step);
         return list;
     };
+
+    self.filterByQuery = function (formElement, page = 1) {
+        console.log('CALL: searchQuery....')
+        let composedUri = self.baseUri() + "/SearchByName?q=" + self.searchInput();
+        ajaxHelper(composedUri, 'GET').done(function (data) {
+            hideLoading();
+            console.log(data);
+            if (data.length > 0) {
+                let sliceCorrectData = data.slice((page - 1) * self.pagesize(), ((page - 1) * self.pagesize() + self.pagesize()));
+                self.records(sliceCorrectData);
+                self.totalRecords(data.length);
+                self.currentPage(page);
+            } else {
+                $('.table').addClass('d-none');
+                $('#noResults').removeClass('d-none');
+            }
+        })
+        return false;
+    }
 
     //--- Page Events
     self.activate = function (id) {
@@ -113,10 +134,15 @@ var vm = function () {
     //--- start ....
     showLoading();
     var pg = getUrlParameter('page');
+    var search = getUrlParameter('q');
     console.log(pg);
-    if (pg === undefined)
+    console.log(search);
+    if (search !== undefined && search !== "") {
+        self.searchInput(search);
+        self.filterByQuery("", pg);
+    } else if (pg === undefined) {
         self.activate(1);
-    else {
+    } else {
         self.activate(pg);
     }
     console.log("VM initialized!");
