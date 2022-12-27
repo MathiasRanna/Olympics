@@ -35,9 +35,9 @@
                 class="far fa-user text-warning"></i> Athletes</a></li>
           <li class="nav-item"><a class="nav-link" aria-current="page" href="../competition/competitions.html"><i
                 class="fa fa-trophy"></i> Competitions</a></li>
-          <li class="nav-item"><a class="nav-link" aria-current="page" href="countries.html"><i
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="countries.html"><i
                 class=" far fa-flag text-danger"></i> Countries</a></li>
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="../games/games.html"><i
+          <li class="nav-item"><a class="nav-link" aria-current="page" href="../games/games.html"><i
                 class="fa fa-map-marker text-success"></i> Games</a></li>
           <li class="nav-item"><a class="nav-link" aria-current="page" href="../modalities/modalities.html"><i
                 class="far fa-soccer-ball text-primary"></i> Modalities</a></li>
@@ -47,8 +47,23 @@
   </nav>
   <!-- WORKING AREA -->
   <div class="container">
-    <div class="border-bottom py-2 mb-2">
-      <h2 data-bind="text:displayName"></h2>
+    <div class="border-bottom py-2 mb-2 row">
+      <div class="col-7"><h2 data-bind="text:displayName"></h2></div>
+      <div class="col-5">
+        <div class="row mb-2">
+          <form data-bind="">
+            <div class="input-group input-group-sm">
+              <label for="search"></label>
+              <input id="search" class="form-control" placeholder="Insert modality name or part of name"
+                     type="text" name="q" data-bind="value: searchInput">
+              <button type="submit" class="btn btn-default btn-sm" title="filter"><i
+                      class="fa fa-search small"></i></button>
+              <a href="modalities.html" class="btn btn-default btn-sm" title="clear search"><i
+                      class="fa fa-times"></i></a>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
     <!-- ko if:records().length > 0 -->
     <div class="row small">
@@ -71,7 +86,7 @@
           <!-- /ko -->
           <!-- ko if:$data != $parent.currentPage() -->
           <li class="page-item"><a class="page-link"
-              data-bind="attr: { href: './countries.html?page=' + $data, title:'Goto Page ' + $data }, text:$data"></a>
+              data-bind="attr: { href: './countries.html?page=' + $data + '&q=' + $parent.searchInput(), title:'Goto Page ' + $data }, text:$data"></a>
           </li>
           <!-- /ko -->
           <!-- /ko -->
@@ -114,6 +129,10 @@
         </tr>
       </tbody>
     </table>
+    <!-- No results found -->
+    <div id="noResults" class="d-none row" style="background-color: aliceblue; padding: 70px">
+      <h5> <i class="fa fa-circle-info"></i><em>No results found, try searching by another name!</em></h5>
+    </div>
   </div>
   <!-- Modal for visualizing loading-->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
