@@ -35,9 +35,9 @@
                 class="far fa-user text-warning"></i> Athletes</a></li>
           <li class="nav-item"><a class="nav-link" aria-current="page" href="../competition/competitions.html"><i
                 class="fa fa-trophy"></i> Competitions</a></li>
-          <li class="nav-item"><a class="nav-link" aria-current="page" href="countries.html"><i
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="countries.html"><i
                 class=" far fa-flag text-danger"></i> Countries</a></li>
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="../games/games.html"><i
+          <li class="nav-item"><a class="nav-link" aria-current="page" href="../games/games.html"><i
                 class="fa fa-map-marker text-success"></i> Games</a></li>
           <li class="nav-item"><a class="nav-link" aria-current="page" href="../modalities/modalities.html"><i
                 class="far fa-soccer-ball text-primary"></i> Modalities</a></li>
@@ -47,8 +47,23 @@
   </nav>
   <!-- WORKING AREA -->
   <div class="container">
-    <div class="border-bottom py-2 mb-2">
-      <h2 data-bind="text:displayName"></h2>
+    <div class="border-bottom py-2 mb-2 row">
+      <div class="col-7"><h2 data-bind="text:displayName"></h2></div>
+      <div class="col-5">
+        <div class="row mb-2">
+          <form data-bind="">
+            <div class="input-group input-group-sm">
+              <label for="search"></label>
+              <input id="search" class="form-control" placeholder="Insert modality name or part of name"
+                     type="text" name="q" data-bind="value: searchInput">
+              <button type="submit" class="btn btn-default btn-sm" title="filter"><i
+                      class="fa fa-search small"></i></button>
+              <a href="countries.html" class="btn btn-default btn-sm" title="clear search"><i
+                      class="fa fa-times"></i></a>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
     <!-- ko if:records().length > 0 -->
     <div class="row small">
@@ -60,9 +75,9 @@
         <ul class="pagination float-end">
           <!-- ko if: currentPage() > 5 && totalPages() > 10 -->
           <li class="page-item float-end"><a class="page-link" title="First Page"
-              data-bind="attr: { href: './countries.html?page=' + '1',  rel:'prev'}">⇤</a></li>
+              data-bind="attr: { href: './countries.html?page=' + '1' + '&q=' + searchInput(),  rel:'prev'}">⇤</a></li>
           <li class="page-item float-end"><a class="page-link" title="Previous Page"
-              data-bind="attr: { href: './countries.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
+              data-bind="attr: { href: './countries.html?page=' + previousPage() + '&q=' + searchInput(),  rel:'prev'}">←</a></li>
           <!-- /ko -->
           <!-- ko foreach: pageArray()-->
           <!-- ko if:$data == $parent.currentPage() -->
@@ -71,15 +86,15 @@
           <!-- /ko -->
           <!-- ko if:$data != $parent.currentPage() -->
           <li class="page-item"><a class="page-link"
-              data-bind="attr: { href: './countries.html?page=' + $data, title:'Goto Page ' + $data }, text:$data"></a>
+              data-bind="attr: { href: './countries.html?page=' + $data + '&q=' + $parent.searchInput(), title:'Goto Page ' + $data }, text:$data"></a>
           </li>
           <!-- /ko -->
           <!-- /ko -->
           <!-- ko if: currentPage() < totalPages() - 4 && totalPages() > 9 -->
           <li class="page-item"><a class="page-link" title="Next Page"
-              data-bind="attr: { href: './countries.html?page=' + nextPage(), rel:'next' }">→</a></li>
+              data-bind="attr: { href: './countries.html?page=' + nextPage() + '&q=' + searchInput(), rel:'next' }">→</a></li>
           <li class="page-item"><a class="page-link" title="Last Page"
-              data-bind="attr: { href: './countries.html?page=' + totalPages() }">⇥</a></li>
+              data-bind="attr: { href: './countries.html?page=' + totalPages() + '&q=' + searchInput() }">⇥</a></li>
           <!-- /ko -->
         </ul>
       </div>
@@ -114,6 +129,10 @@
         </tr>
       </tbody>
     </table>
+    <!-- No results found -->
+    <div id="noResults" class="d-none row" style="background-color: aliceblue; padding: 70px">
+      <h5> <i class="fa fa-circle-info"></i><em>No results found, try searching by another name!</em></h5>
+    </div>
   </div>
   <!-- Modal for visualizing loading-->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -138,8 +157,7 @@
   <nav class="navbar navbar-light bg-light fixed-bottom">
     <div class="container small">
       <div class="navbar-text">&copy; Introdução as Tecnologias Web - 2022/23</div>
-      <div class="navbar-text">Made with <i class="far fa-heart text-danger"></i> for U by <a href="mailto:jsp@ua.pt"
-          class="text-decoration-none text-muted">jsp@ua.pt</a>.
+      <div class="navbar-text"><a href="https://github.com/MathiasRanna/Olympics"><i class="fa-brands fa-github"></i></a>
       </div>
       <div class="navbar-nav">
         <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade de Aveiro</a>

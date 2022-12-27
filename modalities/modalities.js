@@ -27,7 +27,9 @@ var vm = function () {
     self.toRecord = ko.computed(function () {
         return Math.min(self.currentPage() * self.pagesize(), self.totalRecords());
     }, self);
-    self.totalPages = ko.observable(0);
+    self.totalPages = ko.computed(function () {
+        return Math.ceil(self.totalRecords() / self.pagesize());
+    }, self);
     self.pageArray = function () {
         var list = [];
         var size = Math.min(self.totalPages(), 9);
@@ -76,7 +78,6 @@ var vm = function () {
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
             self.pagesize(data.PageSize)
-            self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalRecords);
             //self.SetFavourites();
         });
