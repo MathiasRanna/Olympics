@@ -37,13 +37,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" aria-current="page" href="athletes.html"><i
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="athletes.html"><i
                         class="far fa-user text-warning"></i> Athletes</a></li>
                 <li class="nav-item"><a class="nav-link" aria-current="page" href="../competition/competitions.html"><i
                         class="fa fa-trophy"></i> Competitions</a></li>
                 <li class="nav-item"><a class="nav-link" aria-current="page" href="../countries/countries.html"><i
                         class=" far fa-flag text-danger"></i> Countries</a></li>
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="../games/games.html"><i
+                <li class="nav-item"><a class="nav-link" aria-current="page" href="../games/games.html"><i
                         class="fa fa-map-marker text-success"></i> Games</a></li>
                 <li class="nav-item"><a class="nav-link" aria-current="page" href="../modalities/modalities.html"><i
                         class="far fa-soccer-ball text-primary"></i> Modalities</a></li>
@@ -56,7 +56,16 @@
     <div class="border-bottom pt-2 py-2 mb-2 row">
         <div class="col-7"><h2 data-bind="text:displayName"></h2></div>
         <div class="col-5">
-            <div class="row mb-2">
+            <div id="mainOption" class="input-group input-group form-group">
+                <label for="mainFilter" class="form-label"></label>
+                <select id="mainFilter" class="form-select" data-bind="event:{ change: displayCorrectOption}">
+                    <option selected disabled="disabled">Choose a filter method..</option>
+                    <option value="search">Search by name</option>
+                    <option value="country">Filter by country</option>
+                </select>
+            </div>
+            <!-- Do not display in the beginning -->
+            <div id="searchBar" class="row mb-2 d-none">
                 <form data-bind="submit: filterAthletes">
                     <div class="input-group input-group-sm">
                         <label for="searchAthlete"></label>
@@ -69,7 +78,7 @@
                     </div>
                 </form>
             </div>
-            <div class="row">
+            <div id="searchCountry" class="row d-none">
                 <div class="input-group input-group-sm">
                     <label class="col-4" for="selectCountry">Filter by country</label>
                     <select id="selectCountry" class="form-select col-8" aria-label="Filter by country"
@@ -78,6 +87,11 @@
                 </div>
             </div>
         </div>
+        <!--
+        <div class="col-5">
+
+
+        </div>-->
 
     </div>
     <!-- ko if:records().length > 0 -->
@@ -90,10 +104,10 @@
             <ul class="pagination float-end">
                 <!-- ko if: currentPage() > 5 && totalPages() > 10 -->
                 <li class="page-item float-end"><a class="page-link" title="First Page"
-                                                   data-bind="attr: { href: './athletes.html?page=' + '1',  rel:'prev'}">⇤</a>
+                                                   data-bind="attr: { href: './athletes.html?page=' + '1' + '&q=' + searchInput() + '&ioc=' + selectedCountry(),  rel:'prev'}">⇤</a>
                 </li>
                 <li class="page-item float-end"><a class="page-link" title="Previous Page"
-                                                   data-bind="attr: { href: './athletes.html?page=' + previousPage(),  rel:'prev'}">←</a>
+                                                   data-bind="attr: { href: './athletes.html?page=' + previousPage() + '&q=' + searchInput() + '&ioc=' + selectedCountry(),  rel:'prev'}">←</a>
                 </li>
                 <!-- /ko -->
                 <!-- ko foreach: pageArray()-->
@@ -110,10 +124,10 @@
                 <!-- /ko -->
                 <!-- ko if: currentPage() < totalPages() - 4 && totalPages() > 9 -->
                 <li class="page-item"><a class="page-link" title="Next Page"
-                                         data-bind="attr: { href: './athletes.html?page=' + nextPage(), rel:'next' }">→</a>
+                                         data-bind="attr: { href: './athletes.html?page=' + nextPage() + '&q=' + searchInput() + '&ioc=' + selectedCountry(), rel:'next' }">→</a>
                 </li>
                 <li class="page-item"><a class="page-link" title="Last Page"
-                                         data-bind="attr: { href: './athletes.html?page=' + totalPages() }">⇥</a></li>
+                                         data-bind="attr: { href: './athletes.html?page=' + totalPages() + '&q=' + searchInput() + '&ioc=' + selectedCountry()}">⇥</a></li>
                 <!-- /ko -->
             </ul>
         </div>
