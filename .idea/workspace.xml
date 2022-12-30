@@ -4,7 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="128b564d-0400-4fab-91d9-761e0b8aa620" name="Changes" comment="remove favourite icon" />
+    <list default="true" id="128b564d-0400-4fab-91d9-761e0b8aa620" name="Changes" comment="Statistics page">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/Olympics.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/athletes/athleteDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/athletes/athleteDetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/athletes/athletes.html" beforeDir="false" afterPath="$PROJECT_DIR$/athletes/athletes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/competition/competitionDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/competition/competitionDetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/competition/competitions.html" beforeDir="false" afterPath="$PROJECT_DIR$/competition/competitions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/countries/countries.html" beforeDir="false" afterPath="$PROJECT_DIR$/countries/countries.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/countries/countryDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/countries/countryDetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/games/gameDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/games/gameDetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/games/gameFull.html" beforeDir="false" afterPath="$PROJECT_DIR$/games/gameFull.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/games/games.html" beforeDir="false" afterPath="$PROJECT_DIR$/games/games.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modalities/modalities.html" beforeDir="false" afterPath="$PROJECT_DIR$/modalities/modalities.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modalities/modalitiesDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/modalities/modalitiesDetails.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,6 +34,7 @@
       <list>
         <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="package.json" />
       </list>
     </option>
   </component>
@@ -34,21 +54,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/mathias/WebstormProjects/Olympics&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/mathias/WebstormProjects/Olympics",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.web.browsers",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/modalities" />
@@ -100,7 +121,9 @@
       <workItem from="1672052691908" duration="507000" />
       <workItem from="1672136996750" duration="44504000" />
       <workItem from="1672224275401" duration="1433000" />
-      <workItem from="1672225771973" duration="1039000" />
+      <workItem from="1672225771973" duration="2619000" />
+      <workItem from="1672241867233" duration="36000" />
+      <workItem from="1672402747530" duration="11549000" />
     </task>
     <task id="LOCAL-00001" summary="Athletes and countries pages">
       <created>1670326368506</created>
@@ -291,7 +314,56 @@
       <option name="project" value="LOCAL" />
       <updated>1672180998749</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="background files">
+      <created>1672228201555</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1672228201555</updated>
+    </task>
+    <task id="LOCAL-00029" summary="update athletes">
+      <created>1672228246356</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1672228246356</updated>
+    </task>
+    <task id="LOCAL-00030" summary="close country select bar button">
+      <created>1672228562836</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1672228562836</updated>
+    </task>
+    <task id="LOCAL-00031" summary="close country select bar button">
+      <created>1672228588027</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1672228588027</updated>
+    </task>
+    <task id="LOCAL-00032" summary="gameFull details update">
+      <created>1672229409541</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1672229409541</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Statistics page">
+      <created>1672417175479</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1672417175479</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Statistics page">
+      <created>1672417235743</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1672417235743</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -321,10 +393,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Athletes and countries pages" />
-    <MESSAGE value="Athletes main part ready. Missing: Update buttons and nav" />
-    <MESSAGE value="Athletes ready" />
-    <MESSAGE value="Organized" />
     <MESSAGE value="update indexing" />
     <MESSAGE value="modalities main" />
     <MESSAGE value="modalities details working" />
@@ -345,6 +413,11 @@
     <MESSAGE value="footer update" />
     <MESSAGE value="small bug fixes" />
     <MESSAGE value="remove favourite icon" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove favourite icon" />
+    <MESSAGE value="background files" />
+    <MESSAGE value="update athletes" />
+    <MESSAGE value="close country select bar button" />
+    <MESSAGE value="gameFull details update" />
+    <MESSAGE value="Statistics page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Statistics page" />
   </component>
 </project>
