@@ -37,11 +37,6 @@ var vm = function () {
         });
     }
 
-    function sleep(milliseconds) {
-        const start = Date.now();
-        while (Date.now() - start < milliseconds) ;
-    }
-
     function showLoading() {
         $("#myModal").modal('show', {
             backdrop: 'static',
