@@ -15,9 +15,9 @@ var vm = function () {
         console.log(composedUri);
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
-            createChart('pie', data, "Bronze_Medals_by_Country", 'CountryName', 'Medals', 'Bronze medals per Country', 'Bronze');
-            createChart('pie', data, "Silver_Medals_by_Country", 'CountryName', 'Medals', 'Silver medals per Country', 'Silver');
-            createChart('pie', data, "Gold_Medals_by_Country", 'CountryName', 'Medals', 'Gold medals per Country', 'Gold');
+            createChart('bar', data, "Bronze_Medals_by_Country", 'CountryName', 'Medals', 'Bronze medals per Country', 'Bronze');
+            createChart('bar', data, "Silver_Medals_by_Country", 'CountryName', 'Medals', 'Silver medals per Country', 'Silver');
+            createChart('bar', data, "Gold_Medals_by_Country", 'CountryName', 'Medals', 'Gold medals per Country', 'Gold');
             hideLoading();
         });
     };
