@@ -88,7 +88,7 @@
     </div>
     <!-- /ko -->
     <a href="athletes.html" class="btn btn-default btn-sm small"><i class="fa fa-list"></i> Back to List</a>
-    <a data-bind="attr: { href:OlympediaLink }" target="_blank" class="btn btn-default btn-sm small"><i
+    <a data-bind="attr: { href:OlympediaLink }, visible: OlympediaLink() != '' && OlympediaLink() != null && OlympediaLink() != '-'" target="_blank" class="btn btn-default btn-sm small"><i
             class="fa fa-th"></i> Olympedia link with Full Details</a>
 </div>
 <!-- Modal -->
