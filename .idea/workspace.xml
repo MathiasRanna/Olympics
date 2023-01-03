@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="128b564d-0400-4fab-91d9-761e0b8aa620" name="Changes" comment="keep country or search when exploring">
-      <change afterPath="$PROJECT_DIR$/medals/medals.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/medals/medals.js" afterDir="false" />
+    <list default="true" id="128b564d-0400-4fab-91d9-761e0b8aa620" name="Changes" comment="maps">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/athletes/athleteDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/athletes/athleteDetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/athletes/athletes.html" beforeDir="false" afterPath="$PROJECT_DIR$/athletes/athletes.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/competition/competitionDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/competition/competitionDetails.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/competition/competitions.html" beforeDir="false" afterPath="$PROJECT_DIR$/competition/competitions.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/countries/countries.html" beforeDir="false" afterPath="$PROJECT_DIR$/countries/countries.html" afterDir="false" />
@@ -16,8 +16,11 @@
       <change beforePath="$PROJECT_DIR$/games/gameFull.html" beforeDir="false" afterPath="$PROJECT_DIR$/games/gameFull.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/games/games.html" beforeDir="false" afterPath="$PROJECT_DIR$/games/games.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/medals/medals.html" beforeDir="false" afterPath="$PROJECT_DIR$/medals/medals.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/medals/medals.js" beforeDir="false" afterPath="$PROJECT_DIR$/medals/medals.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modalities/modalities.html" beforeDir="false" afterPath="$PROJECT_DIR$/modalities/modalities.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modalities/modalitiesDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/modalities/modalitiesDetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/statistics/statistics.html" beforeDir="false" afterPath="$PROJECT_DIR$/statistics/statistics.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +31,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="package.json" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -121,7 +124,7 @@
       <workItem from="1672402747530" duration="11742000" />
       <workItem from="1672499287547" duration="30000" />
       <workItem from="1672613508405" duration="673000" />
-      <workItem from="1672693222244" duration="6388000" />
+      <workItem from="1672693222244" duration="13987000" />
     </task>
     <task id="LOCAL-00001" summary="Athletes and countries pages">
       <created>1670326368506</created>
@@ -382,7 +385,42 @@
       <option name="project" value="LOCAL" />
       <updated>1672734050899</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Medals and nav bar for medals">
+      <created>1672740540297</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1672740540297</updated>
+    </task>
+    <task id="LOCAL-00039" summary="update">
+      <created>1672740718256</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1672740718256</updated>
+    </task>
+    <task id="LOCAL-00040" summary="modal">
+      <created>1672740765816</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1672740765816</updated>
+    </task>
+    <task id="LOCAL-00041" summary="medals nav">
+      <created>1672741773248</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1672741773248</updated>
+    </task>
+    <task id="LOCAL-00042" summary="maps">
+      <created>1672747859806</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1672747859806</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -412,11 +450,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="resize all the flags to same size" />
-    <MESSAGE value="basic search functionality" />
-    <MESSAGE value="search and countries, but not working together" />
-    <MESSAGE value="search and countries ready, but not working together" />
-    <MESSAGE value="small style updates" />
     <MESSAGE value="search bar for modalities" />
     <MESSAGE value="Modalities ready" />
     <MESSAGE value="KO closing tag out of place" />
@@ -437,6 +470,11 @@
     <MESSAGE value="add statistics nav" />
     <MESSAGE value="do not show olympedia link if not available" />
     <MESSAGE value="keep country or search when exploring" />
-    <option name="LAST_COMMIT_MESSAGE" value="keep country or search when exploring" />
+    <MESSAGE value="Medals and nav bar for medals" />
+    <MESSAGE value="update" />
+    <MESSAGE value="modal" />
+    <MESSAGE value="medals nav" />
+    <MESSAGE value="maps" />
+    <option name="LAST_COMMIT_MESSAGE" value="maps" />
   </component>
 </project>

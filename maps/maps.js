@@ -1,23 +1,20 @@
-
 // ViewModel KnockOut
 var vm = function () {
     console.log('ViewModel initiated...');
     //---Variáveis locais
     var self = this;
-    self.baseUri = ko.observable('http://192.168.160.58/Olympics/api/Statistics/');
-    self.displayName = 'Olympic Games Medals';
+    self.baseUri = ko.observable('http://192.168.160.58/Olympics/api/Games');
+    self.displayName = 'Olympic Games locations on Map';
     self.error = ko.observable('');
 
     //--- Page Events
     self.activate = function () {
-        console.log('CALL:' + "Medals_Country" + '...');
-        var composedUri = self.baseUri() + "Medals_Country";
+        console.log('CALL:' + "games" + '...');
+        var composedUri = self.baseUri() + "?page=1&pagesize=250";
         console.log(composedUri);
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
-            createChart('bar', data, "Bronze_Medals_by_Country", 'CountryName', 'Medals', 'Bronze medals per Country', 'Bronze');
-            createChart('bar', data, "Silver_Medals_by_Country", 'CountryName', 'Medals', 'Silver medals per Country', 'Silver');
-            createChart('bar', data, "Gold_Medals_by_Country", 'CountryName', 'Medals', 'Gold medals per Country', 'Gold');
+            createMap(data.Records);
             hideLoading();
         });
     };
@@ -68,30 +65,40 @@ $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
 })
 
-function createChart(charType, dataApi, chartId, param1, param2, title, smallTitle){
-    const ctx = document.getElementById(chartId);
-    const currData = dataApi.map(item => item.Medals.filter(medal => medal.MedalName === smallTitle && medal.Counter));
-    console.log();
-
-    new Chart(ctx, {
-        type: charType,
-        data: {
-            labels: dataApi.map(item => item.CountryName),
-            datasets: [{
-                label: smallTitle,
-                data: currData.map(item => item.map(item => item.Counter)),
-                borderWidth: 1
-            }]
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: title
-                }
-            }
-        }
-
+function createMap(dataArr){
+    const map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 40.638839623328494, lng: -8.6626567552871 },
+        zoom: 2,
     });
+    // Create an info window to share between markers.
+    const infoWindow = new google.maps.InfoWindow();
+
+    for (const countryObj of dataArr) {
+        const marker = new google.maps.Marker({
+            position: { lat: parseFloat(countryObj.Lat), lng: parseFloat(countryObj.Lon) },
+            map,
+            title: countryObj.Name + ", " + countryObj.CityName + ", " + countryObj.CountryName,
+        });
+
+        marker.addListener("click", ({ domEvent, latLng }) => {
+            const { target } = domEvent;
+
+            infoWindow.close();
+            infoWindow.setContent(marker.title);
+            infoWindow.open(marker.map, marker);
+        });
+    }
+
 
 }
+
+// let map;
+//
+// function initMap() {
+//     map = new google.maps.Map(document.getElementById("map"), {
+//         center: { lat: -34.397, lng: 150.644 },
+//         zoom: 8,
+//     });
+// }
+//
+// window.initMap = initMap;
