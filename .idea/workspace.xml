@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="128b564d-0400-4fab-91d9-761e0b8aa620" name="Changes" comment="Statistics page">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/Olympics.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="128b564d-0400-4fab-91d9-761e0b8aa620" name="Changes" comment="keep country or search when exploring">
+      <change afterPath="$PROJECT_DIR$/medals/medals.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/medals/medals.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/athletes/athleteDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/athletes/athleteDetails.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/athletes/athletes.html" beforeDir="false" afterPath="$PROJECT_DIR$/athletes/athletes.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/competition/competitionDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/competition/competitionDetails.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/competition/competitions.html" beforeDir="false" afterPath="$PROJECT_DIR$/competition/competitions.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/countries/countries.html" beforeDir="false" afterPath="$PROJECT_DIR$/countries/countries.html" afterDir="false" />
@@ -32,9 +27,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="package.json" />
         <option value="HTML File" />
         <option value="JavaScript File" />
-        <option value="package.json" />
       </list>
     </option>
   </component>
@@ -54,22 +49,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/mathias/WebstormProjects/Olympics",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.web.browsers",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/mathias/WebstormProjects/Olympics&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.web.browsers&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/modalities" />
@@ -123,7 +118,10 @@
       <workItem from="1672224275401" duration="1433000" />
       <workItem from="1672225771973" duration="2619000" />
       <workItem from="1672241867233" duration="36000" />
-      <workItem from="1672402747530" duration="11549000" />
+      <workItem from="1672402747530" duration="11742000" />
+      <workItem from="1672499287547" duration="30000" />
+      <workItem from="1672613508405" duration="673000" />
+      <workItem from="1672693222244" duration="6388000" />
     </task>
     <task id="LOCAL-00001" summary="Athletes and countries pages">
       <created>1670326368506</created>
@@ -363,7 +361,28 @@
       <option name="project" value="LOCAL" />
       <updated>1672417235743</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="add statistics nav">
+      <created>1672417437638</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1672417437638</updated>
+    </task>
+    <task id="LOCAL-00036" summary="do not show olympedia link if not available">
+      <created>1672733444619</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1672733444619</updated>
+    </task>
+    <task id="LOCAL-00037" summary="keep country or search when exploring">
+      <created>1672734050899</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1672734050899</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -393,9 +412,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update indexing" />
-    <MESSAGE value="modalities main" />
-    <MESSAGE value="modalities details working" />
     <MESSAGE value="resize all the flags to same size" />
     <MESSAGE value="basic search functionality" />
     <MESSAGE value="search and countries, but not working together" />
@@ -418,6 +434,9 @@
     <MESSAGE value="close country select bar button" />
     <MESSAGE value="gameFull details update" />
     <MESSAGE value="Statistics page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Statistics page" />
+    <MESSAGE value="add statistics nav" />
+    <MESSAGE value="do not show olympedia link if not available" />
+    <MESSAGE value="keep country or search when exploring" />
+    <option name="LAST_COMMIT_MESSAGE" value="keep country or search when exploring" />
   </component>
 </project>
