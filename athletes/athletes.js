@@ -194,12 +194,17 @@ var vm = function () {
     if (ioc !== undefined && ioc !== "") {
         self.selectedCountry(ioc);
         self.activate(pg, ioc);
+        $('#selectCountry').val(ioc);
+        $('#mainOption').addClass("d-none");
+        $('#searchCountry').removeClass("d-none");
     } else {
         // Activate search functions if search was given
         if (search !== undefined && search !== "") {
             self.searchInput(search);
             self.activate(pg, ioc);
             self.filterAthletes("", pg);
+            $('#mainOption').addClass("d-none");
+            $('#searchBar').removeClass("d-none");
         } else if (pg === undefined) {
             self.activate(1);
         } else {
